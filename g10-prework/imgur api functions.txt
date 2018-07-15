@@ -1,0 +1,72 @@
+IMAGE
+
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": [
+    "api",
+    "imgur",
+    "com"
+  ],
+  "path": [
+    "3",
+    "image",
+    "{{imageHash}}"
+  ],
+  "headers": {
+    "Authorization": "Client-ID {}"
+  }
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+
+COMMENT
+
+var http = require("https");
+
+var options = {
+  "method": "GET",
+  "hostname": [
+    "api",
+    "imgur",
+    "com"
+  ],
+  "path": [
+    "3",
+    "comment",
+    "{{commentId}}"
+  ],
+  "headers": {
+    "Authorization": "Client-ID {{clientId}}"
+  }
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.end();
+req.end();
